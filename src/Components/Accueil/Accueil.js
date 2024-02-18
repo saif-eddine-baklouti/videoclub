@@ -1,12 +1,12 @@
-
-//import './Accueil.css';
+import infosAccueil from "./Accueil.json";
+import "./Accueil.css";
 
 function Accueil() {
-  return (
-      <main>
-dfggfd
-      </main>
-  );
+  const introAccueil = infosAccueil.map((info, index) => {
+    return <div data={index}>{info}</div>;
+  });
+
+  return <main>{introAccueil}</main>;
 }
 
 export default Accueil;
