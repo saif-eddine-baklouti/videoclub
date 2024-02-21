@@ -1,4 +1,5 @@
-import TuileFilm from "./TuileFilm/TuileFilm";
+import { Link } from "react-router-dom";
+import TuileFilm from "../TuileFilm/TuileFilm";
 import "./ListeFilms.css";
 
 function ListeFilms() {
