@@ -1,15 +1,15 @@
-import './TuileFilm.css';
+import "./TuileFilm.css";
 
 function TuileFilm(props) {
-  console.log(props);
+  // console.log(props);
 
   return (
-    // <Link to={`/film/${props.id}`}>
-      <article>
-        fdsfdsfds Film
-        <h1>{props.film}</h1>
-      </article>
-    // </Link>
+    <article className="film-card">
+      <h1>{props.data.titre}</h1>
+      <img src={`img/${props.data.titreVignette}`} alt="props.data.titre" />
+      <h4>{props.data.annee}</h4>
+      <h4>{props.data.realisation}</h4>
+    </article>
   );
 }
 
