@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { AppContext } from "../App/App";
+import { useContext } from "react";
 
 import "./Film.css";
 
+
 function Film() {
+
+  const context = useContext(AppContext)
   const { id } = useParams();
 
 
@@ -51,6 +56,8 @@ function Film() {
     .then((data) => {
       console.log(data)
       console.log(data.notes)
+      setFilm(data);
+
 
       //setMoyenne()
       //setVote()
@@ -58,6 +65,48 @@ function Film() {
     
   }
 
+  let blocAjouteCommentaire;
+
+  if (context.estLog) {
+    blocAjouteCommentaire = <form onSubmit={soumettreCommentaire}>
+                              <textarea name="" placeholder="Ajouter votre commentaire"></textarea>
+                              <button>soumette</button>
+                            </form>
+  }
+
+  async function soumettreCommentaire(e) {
+    e.preventDefault();
+    
+    let aCommentaires;
+
+    if (!film.commentaires) {
+      aCommentaires = [{commentaire: 'je suis un commentaire', usager: context.usager}];
+    } else {
+      aCommentaires = film.commentaires;
+      aCommentaires.push({commentaire: 'je suis un commentaire', usager: context.usager});
+    }
+    
+    const oOptions = {
+      method:'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({commentaires: aCommentaires})
+    }
+
+    let putCommentaire = await fetch(urlFilm, oOptions),
+        getFilm = await fetch(urlFilm);
+    
+    Promise.all([putCommentaire, getFilm])
+    .then((reponse) => reponse[1].json())
+    .then((data) => {
+      console.log(data)
+      console.log(data.notes)
+      setFilm(data);
+
+    })
+    
+  }
 
   return <main>
             <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
@@ -67,7 +116,7 @@ function Film() {
             <p>{film?.genres}</p>
             <p>{film?.description}</p>
             <p>{film?.notes}</p>
-        
+            {blocAjouteCommentaire}
             <button onClick={soumettreNote}>Vote</button>
         </main>;
 }
