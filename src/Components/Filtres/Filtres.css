@@ -1,0 +1,16 @@
+.filtre-wrap {
+    margin: var(--espace-lg);
+    cursor: pointer;
+}
+
+.filtre-item {
+    padding: var(--espace-md);
+    border: var(--espace-xs) solid var(--secondaire);
+    border-radius: var(--espace-xxxl);
+    text-align: center;
+}
+
+.actif {
+    margin: var(--espace-xs);
+    background-color: var(--secondaire);
+}

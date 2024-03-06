@@ -1,0 +1,32 @@
+header {
+    background-color: var(--primaire);
+    border: 2px solid var(--accent);
+}
+
+.logo {
+    font-family: var(--font-logo);
+    font-size: var(--espace-xxxl);
+    text-decoration: none;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: var(--espace-xl);
+}
+
+.nav-container {
+    display: grid;
+}
+
+.nav-item {
+
+    padding: var(--espace-sm);
+    margin: var(--espace-sm);
+    border: var(--espace-xs) solid var(--accent);
+    border-radius: var(--espace-xl);
+    font-family: var(--font-titre);
+    text-decoration: none;
+    text-align: center;
+}

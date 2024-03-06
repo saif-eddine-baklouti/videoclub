@@ -1,3 +1,19 @@
 :root {
     --space-base: 5px;
+
+    --espace-xs: 4px;
+    --espace-sm: 8px;
+    --espace-md: 12px;
+    --espace-lg: 16px;
+    --espace-xl: 24px;
+    --espace-xxl: 32px;
+    --espace-xxxl: 64px;
+
+    --primaire: #EC8922;
+    --secondaire: #F1602C;
+    --accent: #D52429;
+    --tertiaire: #915018;
+    --quaternaire: #6C3F18;
+
+
 }

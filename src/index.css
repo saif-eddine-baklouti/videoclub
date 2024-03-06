@@ -1,2 +1,15 @@
 
+/* Exceptions spécifiques à des pages*/
+/* @import url(./styles/reset.css); */
 @import url(./styles/1-settings/variables.css);
+@import url(./styles/3-generic/reset.css);
+@import url(./styles/4-elements/typographies.css);
+/* @import url(./styles/rythme.css);
+@import url(./styles/typographie.css);
+@import url(./components/boutons.css);
+@import url(./components/input.css);
+@import url(./styles/general.css);
+@import url(./pages/catalogue.css);
+@import url(./pages/produit.css);
+@import url(./pages/accueil.css);
+@import url(./styles/1-settings/variables.css); */

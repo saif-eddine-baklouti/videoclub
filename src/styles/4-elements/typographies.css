@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+
+:root {
+    --font-logo: 'monoton';
+    --font-titre: 'Oregano';
+    --font-principale: 'Mooli';
+}
