@@ -5,7 +5,7 @@ function Filtres(props) {
   
   const urlListeFilms = "https://api-films-c.onrender.com/films";
 
-  function handleFiltre(e){
+  function handleFiltres(e){
     
     
     console.log(e.target)
@@ -49,7 +49,7 @@ function Filtres(props) {
   }
   
   return (      
-    <ul onClick={(e) => {handleFiltre(e); handleFiltreActif(e);}} className="filtre-wrap" data-filtre>
+    <ul onClick={(e) => {handleFiltres(e); handleFiltreActif(e);}} className="filtre-wrap" data-filtre>
         <li className="filtre-item">Titre alphabétique (A-Z)</li>
         <li className="filtre-item">Titre alphabétique (Z-A)</li>
         <li className="filtre-item">Réalisateur alphabétique (A-Z)</li>
