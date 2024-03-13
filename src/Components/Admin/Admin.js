@@ -8,10 +8,10 @@ function Admin(props) {
   console.log(context)
 
   // useEffect( () => {
-    if (context.estLog) {
-      // props.setLog(() => ({...logging,estLog: false, usager: "" }));
-      props.setLog({ estLog: false, usager: "" });
-    }
+    // if (context.estLog) {
+    //   // props.setLog(() => ({...logging,estLog: false, usager: "" }));
+    //   props.setLog({ estLog: false, usager: "" });
+    // }
 
   // });
 
