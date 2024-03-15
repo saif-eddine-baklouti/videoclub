@@ -112,13 +112,15 @@ async function soumissionData(option) {
 
 return ( 
     <article className="film-container">
+        <div className="film-item-1">
         <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
         <h2>{film?.titre}</h2>
         <p>{film?.realisation}</p>
         <p>{film?.annee}</p>
         <p>{film?.genres}</p>
         <p>{film?.description}</p>
-
+        </div>
+        <div className="film-item-2">
         <Vote className="vote" soumissionVote={soumettreNote} />
         <div>Moyenne de vote : {moyenne}</div>
         <div>Nombre de vote : {film.notes?.length > 0 ? film.notes.length : "Aucun vote disponible"}</div>
@@ -129,6 +131,7 @@ return (
                 <p key={i} > {commentaire.commentaire}  from  {commentaire.usager} </p>
             )) : 'Aucun commentaire disponible'}
         
+        </div>
         </div>
     </article>
     

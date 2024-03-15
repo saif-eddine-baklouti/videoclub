@@ -1,8 +1,40 @@
 .film-container {
-  max-width: 400px;
-  max-height: 300px;
+  max-width: 300px;
+  max-height: 200px;
+  display: flex;
+  column-gap: 50px;
+  margin: 50px;
+  justify-content: space-between;
 }
 
-.film-container img {
-  width: 70%;
+/* .film-item-1 img {
+
+} */
+.film-item-2 {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
+
+/* Style de base pour le textarea */
+textarea {
+  width: 100%; /* Largeur à 100% de son conteneur */
+  padding: 10px; /* Espacement intérieur */
+  border: 2px solid var(--secondaire); /* Bordure bleue de 2 pixels */
+  border-radius: 5px; /* Coins arrondis */
+  font-family: Arial, sans-serif; /* Police de caractères */
+  font-size: 16px; /* Taille de la police */
+}
+
+/* Style pour le survol */
+textarea:hover {
+  border-color: var(--primaire); /* Couleur de la bordure au survol */
+}
+
+/* Style pour le focus */
+textarea:focus {
+  border-color: var(--accent); /* Couleur de la bordure lorsqu'il a le focus */
+  outline: none; /* Suppression de la bordure de focus par défaut */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
+}
+

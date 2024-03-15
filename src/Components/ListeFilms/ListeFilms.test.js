@@ -43,9 +43,21 @@ describe('Composant ListeFilms', () => {
      */
     test('Vérifie si les clés sont présentes dans la réponse', async () => {
 
+        const reponse = await fetch('https://api-films-c.onrender.com/films');
+        const data = await reponse.json();
 
-
-
-
+        
+        await waitFor(() => {
+            data.forEach(film => {
+                
+                expect(film).toHaveProperty('titre')
+                expect(film).toHaveProperty('genres')
+                expect(film).toHaveProperty('realisation')
+                expect(film).toHaveProperty('description')
+                expect(film).toHaveProperty('annee')
+                expect(film).toHaveProperty('titreVignette')
+            });
+        });
+        
     });
 });
