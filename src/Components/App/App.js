@@ -16,23 +16,20 @@ import "./App.css";
 export const AppContext = React.createContext();
 
 function App() {
-    const [logging, setLogging] = useState({estLog: false, usager: ""});
 
+    const [logging, setLogging] = useState({estLog: false, usager: ""});
+    
     function login(e) {
         e.preventDefault();
         if (e.target.usager.value === "admin") {
-            // setLogging({ estLog: true, usager: e.target.usager.value });
-            setLogging((logging) => ({...logging, estLog: true, usager: e.target.usager.value }));
-            console.log(e.target.usager.value);
+            localStorage.setItem('log', JSON.stringify({ estLog: true, usager: e.target.usager.value }))
         }    
+        const storageLog = JSON.parse(localStorage.getItem('log'))
+        setLogging(storageLog)
         e.target.reset();
-        // console.log(logging)
-        
     }
     
     function logout(e) {
-        // e.preventDefault();
-        // console.log(e.target.value);
         if (e.target.value === "logout") {
             setLogging((logging) => ({...logging,estLog: false, usager: "" }));
             localStorage.clear();
@@ -40,9 +37,8 @@ function App() {
     }
 
     return (
-        <AppContext.Provider value={logging}>
             <Router>
-                <Entete handleLogin={login} handleLogout={logout} />
+                <Entete handleLogin={login} handleLogout={logout} logging={logging} />
                 <Routes>
                     <Route path='/' element={<Accueil />}></Route>
                     <Route path='/liste-films' element={<ListeFilms />}></Route>
@@ -51,7 +47,6 @@ function App() {
                     <Route path='/*' element={<Page404 />}></Route>
                 </Routes>
             </Router>
-        </AppContext.Provider>
     );
 }
 

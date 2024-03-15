@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { AppContext } from '../App/App';
@@ -113,6 +113,7 @@ describe('Composant Film', () => {
         const reponse = await fetch('https://api-films-c.onrender.com/films/pOBr1gw14rfa9F0jivAX');
         const data = await reponse.json();
 
+        
         await waitFor(() => {
             expect(data).toHaveProperty('titre')
             expect(data).toHaveProperty('genres')
@@ -120,6 +121,8 @@ describe('Composant Film', () => {
             expect(data).toHaveProperty('description')
             expect(data).toHaveProperty('annee')
             expect(data).toHaveProperty('titreVignette')
+            expect(data).toHaveProperty('commentaires')
+            expect(data).toHaveProperty('notes')
         });
 
 

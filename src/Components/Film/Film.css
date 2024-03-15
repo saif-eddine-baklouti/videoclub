@@ -1,50 +1,8 @@
 .film-container {
-    max-width: 400px;
-    max-height: 300px;
+  max-width: 400px;
+  max-height: 300px;
 }
 
 .film-container img {
-    width: 80%;
+  width: 70%;
 }
-
-.rating {
-    display: flex;
-    flex-direction: row-reverse;
-    width: 450px;
-    min-height: 70px;
-  }
-  
-  .rating label {
-    display: flex;
-    flex: 1;
-    position: relative;
-    cursor: pointer;
-  }
-  .rating label:after {
-    font-family: 'FontAwesome';
-    transition: all 0.4s ease-out;
-    -webkit-font-smoothing: antialiased;
-    position: absolute;
-    content: "\f006";
-    color: #777;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    font-size: 70px;
-    line-height: 1;
-  }
-  .rating label:hover:after {
-    color: #fff;
-  }
-  .rating input {
-    display: none;
-  }
-  .rating input:checked + label:after,
-  .rating input:checked ~ label:after {
-    content: "\f005";
-    color: #fff;
-    text-shadow: 0 0 20px #F9BF3B;
-    text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.6);
-  }

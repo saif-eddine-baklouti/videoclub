@@ -1,6 +1,6 @@
-import {useState, useEffect, useContext} from "react";
+import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import {AppContext} from "../App/App";
+// import {AppContext} from "../App/App";
 
 
 import "./Film.css";
@@ -10,17 +10,14 @@ import Commentaires from "../Commentaires/Commentaires";
 
 function Film() {
     
-    const context = useContext(AppContext);
+    // const context = useContext(AppContext);
     const {id} = useParams();
     const urlFilm = `https://api-films-c.onrender.com/films/${id}`;
     const [film, setFilm] = useState({});
-    const [vote, setVote] = useState(null);
     const [moyenne, setMoyenne] = useState(null)
 
-    const storageLog = localStorage.getItem('log')
+    const storageLog = JSON.parse(localStorage.getItem('log'))
 
-    console.log(context)
-    
     useEffect(() => {
         fetch(urlFilm)
         .then((response) => response.json())
@@ -36,7 +33,6 @@ function Film() {
             let sum = arrNotes.reduce((accumulator, currentValue) => {
                     return accumulator + currentValue
                     },0)
-                    // setNumNotes(arrNotes.length)
                 let moyenne = sum / arrNotes.length ;
                     return moyenne.toFixed(2)
                 })
@@ -44,7 +40,7 @@ function Film() {
 
     function soumettreNote(e){
         e.preventDefault();
-        // console.log(vote)
+        const vote = e.target.id
     let aNotes;
 
         if (!film.notes) {
@@ -69,7 +65,6 @@ function Film() {
 
     function soumettreCommentaire(e) {
     e.preventDefault();
-    // console.log()
     const nouveauCommentaire = e.target.commentaire.value
     if (nouveauCommentaire !== '') {
         
@@ -78,13 +73,13 @@ function Film() {
 
     if (!film.commentaires) {
         aCommentaires = [
-            {commentaire: nouveauCommentaire, usager: context.usager},
+            {commentaire: nouveauCommentaire, usager: storageLog.usager},
         ];
     } else {
         aCommentaires = film.commentaires;
         aCommentaires.push({
             commentaire: nouveauCommentaire,
-            usager: context.usager,
+            usager: storageLog.usager,
         });
     }
 
@@ -108,16 +103,12 @@ async function soumissionData(option) {
     Promise.all([putData, getFilm])
     .then((reponse) => reponse[1].json())
     .then((data) => {
-        // console.log(data);
-        // console.log(data.notes);
         setFilm(data);
         data.notes ? calculMoyenne(data.notes) : setMoyenne(0);
         
     });
 
 }
-
-// console.log(film.commentaires)
 
 return ( 
     <article className="film-container">
@@ -127,19 +118,15 @@ return (
         <p>{film?.annee}</p>
         <p>{film?.genres}</p>
         <p>{film?.description}</p>
-        {/* <div>{blocAjouteCommentaire}</div> */}
 
-        <form onSubmit={soumettreNote}>
-        <Vote onChangeVote={setVote} />
+        <Vote className="vote" soumissionVote={soumettreNote} />
         <div>Moyenne de vote : {moyenne}</div>
         <div>Nombre de vote : {film.notes?.length > 0 ? film.notes.length : "Aucun vote disponible"}</div>
-        </form>
         
         {storageLog ? <Commentaires handleCommentaire={soumettreCommentaire} /> : ''}    
-        {/* {context.estLog} ? <Commentaires/> */}
         <div>
             {film.commentaires?.length > 0 ? film.commentaires.map((commentaire, i) => (
-                <p key={i} > {commentaire.commentaire}</p>
+                <p key={i} > {commentaire.commentaire}  from  {commentaire.usager} </p>
             )) : 'Aucun commentaire disponible'}
         
         </div>
