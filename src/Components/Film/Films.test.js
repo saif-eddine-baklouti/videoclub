@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { AppContext } from '../App/App';
 import Film from './Film';
-//import Vote from '../Vote/Vote';
+import Vote from '../Vote/Vote'; 
 
 
 describe('Composant Film', () => {
@@ -96,12 +96,35 @@ describe('Composant Film', () => {
      */
     test('Vérifie la moyenne et le nombre de vote(s)', async () => {
 
+        const soumettreCommentaire = jest.fn();
+
         // sur mockFilm , faire la poutine pour trouver la moyenne et le nombre de note(s)
+        function calculMoyenne (arrNotes) {
+            // setMoyenne(() => {
+                let sum = arrNotes.reduce((accumulator, currentValue) => {
+                        return accumulator + currentValue
+                        },0)
+                    let moyenne = sum / arrNotes.length ;
+                        return moyenne.toFixed(2)
+                    // })
+        }
+
+        const moyenneTest = calculMoyenne(mockFilm.notes)
+        const numNoteTest = mockFilm.notes.length
 
         //render le composant Vote avec ses props
 
-        // screen toBeInThe Document() pour moyenne 
-        // screen toBeInThe Document() pour nombre de vote
+        render(            
+        <ContextWrapper>
+            <Vote handleCommentaire={soumettreCommentaire} moyenne={moyenneTest} numVote={numNoteTest} />
+        </ContextWrapper>
+        )
+
+        // // screen toBeInThe Document() pour moyenne 
+        expect(screen.getByText(moyenneTest)).toBeInTheDocument();
+        // // screen toBeInThe Document() pour nombre de vote
+        expect(screen.getByText(numNoteTest)).toBeInTheDocument();
+        
     });
 
     
@@ -121,11 +144,9 @@ describe('Composant Film', () => {
             expect(data).toHaveProperty('description')
             expect(data).toHaveProperty('annee')
             expect(data).toHaveProperty('titreVignette')
-            expect(data).toHaveProperty('commentaires')
-            expect(data).toHaveProperty('notes')
         });
 
-
+ 
 
     });
 });

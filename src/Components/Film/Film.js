@@ -1,7 +1,5 @@
 import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-// import {AppContext} from "../App/App";
-
 
 import "./Film.css";
 import "../../index.css";
@@ -10,11 +8,11 @@ import Commentaires from "../Commentaires/Commentaires";
 
 function Film() {
     
-    // const context = useContext(AppContext);
     const {id} = useParams();
     const urlFilm = `https://api-films-c.onrender.com/films/${id}`;
     const [film, setFilm] = useState({});
     const [moyenne, setMoyenne] = useState(null)
+    const [numVote, setNumVote] = useState(null)
 
     const storageLog = JSON.parse(localStorage.getItem('log'))
 
@@ -24,6 +22,8 @@ function Film() {
             .then((data) => {
                 setFilm(data);
                 data.notes ? calculMoyenne(data.notes) : setMoyenne(0);
+                data.notes ? setNumVote(parseInt(data.notes.length)) : setNumVote(parseInt(0))
+                console.log(data.genres)
                 
             });
     }, [urlFilm]);
@@ -105,30 +105,39 @@ async function soumissionData(option) {
     .then((data) => {
         setFilm(data);
         data.notes ? calculMoyenne(data.notes) : setMoyenne(0);
-        
+        data.notes ? setNumVote(data.notes.length) : setNumVote(0)
+
     });
 
 }
 
 return ( 
-    <article className="film-container">
+    <article className="film-container grille grille--3">
         <div className="film-item-1">
         <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
         <h2>{film?.titre}</h2>
         <p>{film?.realisation}</p>
         <p>{film?.annee}</p>
-        <p>{film?.genres}</p>
-        <p>{film?.description}</p>
         </div>
         <div className="film-item-2">
-        <Vote className="vote" soumissionVote={soumettreNote} />
-        <div>Moyenne de vote : {moyenne}</div>
-        <div>Nombre de vote : {film.notes?.length > 0 ? film.notes.length : "Aucun vote disponible"}</div>
+            <h2>Genres :</h2>
+        <div>
+            {film.genres ? film.genres.map((genre, i) => (
+            
+            <p key={i}> {genre}</p>
+            
+            )): ""}
+            </div>
+
+            <h2>Description :</h2>
+        <p>{film?.description}</p>
+        <Vote className="vote" soumissionVote={soumettreNote} moyenne={moyenne} numVote={numVote} />
         
+            <h2>Commentaires :</h2>
         {storageLog ? <Commentaires handleCommentaire={soumettreCommentaire} /> : ''}    
         <div>
             {film.commentaires?.length > 0 ? film.commentaires.map((commentaire, i) => (
-                <p key={i} > {commentaire.commentaire}  from  {commentaire.usager} </p>
+                <p key={i} > {commentaire.commentaire}  FROM {commentaire.usager} </p>
             )) : 'Aucun commentaire disponible'}
         
         </div>

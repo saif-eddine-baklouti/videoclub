@@ -4,7 +4,9 @@
 */
 
 html,
-body,
+body {
+	font-family: var(--font-principale);
+}
 div,
 span,
 applet,

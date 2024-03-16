@@ -3,7 +3,7 @@ import "./Accueil.css";
 
 function Accueil() {
   const introAccueil = infosAccueil.map((info, index) => {
-    return <div key={index}>{info}</div>;
+    return <div className="parag" key={index}>{info}</div>;
   });
 
   return <main>{introAccueil}</main>;

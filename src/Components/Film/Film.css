@@ -7,23 +7,25 @@
   justify-content: space-between;
 }
 
-/* .film-item-1 img {
+.film-item-1 img {
+  height: 60vh;
+}
 
-} */
 .film-item-2 {
+  height: 30vh;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 }
 
-/* Style de base pour le textarea */
+
 textarea {
-  width: 100%; /* Largeur à 100% de son conteneur */
-  padding: 10px; /* Espacement intérieur */
-  border: 2px solid var(--secondaire); /* Bordure bleue de 2 pixels */
-  border-radius: 5px; /* Coins arrondis */
-  font-family: Arial, sans-serif; /* Police de caractères */
-  font-size: 16px; /* Taille de la police */
+  width: 100%; 
+  padding: var(--espace-md); 
+  border: 2px solid var(--secondaire); 
+  border-radius: 5px; 
+  font-family: var(--font-principale); 
+  font-size: var(--espace-lg); 
 }
 
 /* Style pour le survol */
@@ -38,3 +40,6 @@ textarea:focus {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
 }
 
+h2 {
+  margin: var(--espace-md);
+}

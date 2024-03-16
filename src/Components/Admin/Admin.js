@@ -1,19 +1,7 @@
-import {useContext} from "react";
-import {AppContext} from "../App/App";
-// import { useEffect } from "react";
 import "./Admin.css";
 
-function Admin(props) {
-  const context = useContext(AppContext);
-  console.log(context)
+function Admin() {
 
-  // useEffect( () => {
-    // if (context.estLog) {
-    //   // props.setLog(() => ({...logging,estLog: false, usager: "" }));
-    //   props.setLog({ estLog: false, usager: "" });
-    // }
-
-  // });
 
   return( 
     <>
